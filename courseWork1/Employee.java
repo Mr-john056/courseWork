@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Employee {
     private static int count;
     private final String fio;
@@ -9,7 +10,7 @@ public class Employee {
         count++;
         this.setId(count);
         this.fio = fio;
-        this.department = department;
+        this.department = getDepartment();
         this.salary = salary;
 
     }
@@ -37,9 +38,12 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Employee{" +
                 "ФИО работника ='" + fio + '\'' +
                 ", Отдел ='" + department + '\'' +
@@ -54,42 +58,43 @@ public class Employee {
                 sumSalary1 = sumSalary1 + employee.getSalary();
             }
         }
-        return sumSalary1
+        return sumSalary1;
     }
-    public static minSalary(Employee[] employees){
-        int id = 0;
-        int minSalary1 = integer.MaxVALUE;
+    public static Employee minSalary(Employee[] employees){
+        int index = 0;
+        int minSalary1 = Integer.MAX_VALUE;
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null&& minSalary1 > employeesp[i].getSalary()){
+            if (employees[i] != null && minSalary1 > employees[i].getSalary()){
                 minSalary1 = employees[i].getSalary();
-                id = employees[i].getId();
+                index = i;
             }
         }
-        System.out.println("Сотрудник с id " + id + " имеет минимальную зарплату " + minSalary1);
+    return employees[index];
     }
-    public static void maxSalary(Employee[] employees) {
-        int id = 0;
+    public static Employee maxSalary(Employee[] employees) {
+        int index = 0;
         int maxSalary1 = 0;
-        for (int i = 0; i < employees.length; i++)  {
-            if (employees[i] != null){
-                if (maxSalary1<employees[i].getSalary()){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (maxSalary1 < employees[i].getSalary()) {
                     maxSalary1 = employees[i].getSalary();
-                    id = employees[i].getId();
+                    index = i;
                 }
             }
-            System.out.println("Сотрудник с id " + id + " имеет максимальную зарплату " + maxSalary1);
         }
+        return employees[index];
+    }
         public static float middleSalary(Employee[] employees){
             int k = 0;
-            float sumSalary2=sumSalary(employees);
             for (int i = 0; i < employees.length; i++){
                 if (employees[i] != null){
                     k++;
                 }
             }
+            if (k==0) return 0;
+            float sumSalary2=sumSalary(employees);
             float middleSalary = sumSalary2/k;
             System.out.println("Средняя зарплата сотрудников = " + middleSalary);
-
             return middleSalary;
         }
         public static void showEmployee(Employee[]employees){
@@ -99,5 +104,5 @@ public class Employee {
                 }
             }
         }
-    }
 }
+
